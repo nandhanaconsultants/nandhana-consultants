@@ -5,41 +5,60 @@
   <title>Nandhana Consultants</title>
   <style>
     body {
-      font-family: 'Open Sans', sans-serif;
       margin: 0;
+      font-family: 'Open Sans', sans-serif;
       background-color: #f9f9f9;
-      color: #4A4A4A;
+      color: #333;
     }
     header {
-      background-color: #003366;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #003366; /* Deep Blue */
       color: white;
-      padding: 20px;
-      text-align: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-    header p {
-      margin: 5px 0 0;
-      font-size: 1.2em;
-      color: #D4AF37;
-    }
+    .logo img { height: 60px; cursor: pointer; }
+    .title { text-align: center; cursor: pointer; }
+    .title h1 { margin: 0; font-size: 2em; }
+    .title p { margin: 5px 0 0; font-size: 1.1em; color: #D4AF37; }
+    .contact { text-align: right; font-size: 0.9em; }
+    .contact a { color: #D4AF37; text-decoration: none; font-weight: bold; }
+
     nav {
-      background-color: #009966;
-      padding: 10px;
+      background-color: #009966; /* Emerald Green */
       text-align: center;
+      padding: 12px;
+      position: sticky;
+      top: 80px;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
     nav a {
       color: white;
-      margin: 0 15px;
+      margin: 0 20px;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s ease;
     }
+    nav a:hover { color: #D4AF37; }
+
     section {
-      padding: 40px;
+      padding: 60px 40px;
       text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
     }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 { color: #003366; margin-bottom: 20px; }
+
     footer {
       background-color: #003366;
       color: white;
@@ -47,33 +66,120 @@
       padding: 15px;
       margin-top: 30px;
     }
+
+    .sales-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .sales-card {
+      background-color: white;
+      border: 2px solid #009966;
+      border-radius: 8px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .sales-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    .sales-card h3 { color: #D4AF37; margin-bottom: 10px; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Nandhana Consultants</h1>
-    <p>Smart Real Estate & Business Solutions</p>
+    <div class="logo" onclick="goHome()">
+      <img src="https://drive.google.com/uc?export=view&id=1zdW1oVpmYcxStOodxhfAIKLF_2cQAUkS" alt="Logo">
+    </div>
+    <div class="title" onclick="goHome()">
+      <h1>Nandhana Consultants</h1>
+      <p>Smart Real Estate & Business Solutions</p>
+    </div>
+    <div class="contact">
+      <p>Email: <a href="mailto:nandhanaconsultants@gmail.com">nandhanaconsultants@gmail.com</a></p>
+      <p>Phone: +91-9493005105</p>
+    </div>
   </header>
+
   <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
+    <a href="#home">Home</a>
+    <a href="#sales">Sales</a>
+    <a href="#vision">Vision</a>
     <a href="#contact">Contact</a>
   </nav>
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We specialize in CRM, ERP, MIS, and real estate solutions with a focus on client success and innovation.</p>
+
+  <section id="home">
+    <h2>Welcome to Nandhana Consultants</h2>
+    <p>Your trusted partner in Real Estate, CRM, ERP, and MIS solutions.</p>
   </section>
-  <section id="services">
-    <h2>Our Services</h2>
-    <p>CRM Operations • ERP Systems • MIS Reporting • Real Estate Consulting</p>
+
+  <section id="sales">
+    <h2>Our Sales Expertise</h2>
+    <div class="sales-container">
+      <div class="sales-card">
+        <h3>Residential Sales</h3>
+        <p>Flats, villas, and plots with trusted builders in Hyderabad.</p>
+      </div>
+      <div class="sales-card">
+        <h3>Commercial Sales</h3>
+        <p>Office spaces and retail properties tailored to your business needs.</p>
+      </div>
+      <div class="sales-card">
+        <h3>Property Transfers</h3>
+        <p>Expert assistance with sale deeds, registrations, and compliance.</p>
+      </div>
+      <div class="sales-card">
+        <h3>Rentals / Lease</h3>
+        <p>Helping clients find the right rental homes and commercial spaces.</p>
+      </div>
+      <div class="sales-card">
+        <h3>Bank Loans</h3>
+        <p>Guidance in securing home loans and mortgage financing.</p>
+      </div>
+    </div>
   </section>
+
+  <section id="vision">
+    <h2>Vision & Mission</h2>
+    <p><strong>Vision:</strong> To be the most trusted partner in real estate and business solutions.</p>
+    <p><strong>Mission:</strong> Deliver innovation, professionalism, and sustainable practices for client success.</p>
+  </section>
+
   <section id="contact">
     <h2>Contact Us</h2>
-    <p>Email: nandhana.consultants@example.com</p>
+    <p>Email: nandhanaconsultants@gmail.com</p>
+    <p>Phone: +91-9493005105</p>
     <p>Location: Hyderabad, India</p>
   </section>
+
   <footer>
     <p>&copy; 2026 Nandhana Consultants. All rights reserved.</p>
   </footer>
+
+<script>
+  function goHome() {
+    // Find the Home section
+    const homeSection = document.getElementById("home");
+    // Smooth scroll into view
+    homeSection.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Scroll reveal effect for sections
+  const sections = document.querySelectorAll("section");
+  const revealOnScroll = () => {
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        sec.classList.add("visible");
+      }
+    });
+  };
+  window.addEventListener("scroll", revealOnScroll);
+  window.addEventListener("load", revealOnScroll);
+</script>
+
 </body>
 </html>
