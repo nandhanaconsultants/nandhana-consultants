@@ -1,106 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
   <title>Nandhana Consultants</title>
+
+  <!-- Favicon (logo in tab) -->
+  <link rel="icon" type="image/png" href="https://drive.google.com/uc?export=view&id=1zdW1oVpmYcxStOodxhfAIKLF_2cQAUkS">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
+    :root{
+      --brand-dark:#003366;
+      --brand-green:#009966;
+      --gold:#D4AF37;
+      --muted:#6b7280;
+      --card-bg:#ffffff;
+      --max-width:1100px;
+      --radius:10px;
+      --gap:18px;
+      --header-h:76px;
+      --nav-h:48px;
+    }
+
+    html { scroll-behavior:smooth; scroll-padding-top: calc(var(--header-h) + var(--nav-h) + 12px); }
     body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      margin:0;
+      font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background:#f5f7fb;
+      color:#111827;
+      line-height:1.45;
     }
+
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #003366; /* Deep Blue */
-      color: white;
-      padding: 15px 30px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:10px 18px;
+      background:var(--brand-dark);
+      color:#fff;
+      position:sticky;
+      top:0;
+      z-index:1200;
+      height:var(--header-h);
+      box-sizing:border-box;
     }
-    .logo img { height: 60px; cursor: pointer; }
-    .title { text-align: center; cursor: pointer; }
-    .title h1 { margin: 0; font-size: 2em; }
-    .title p { margin: 5px 0 0; font-size: 1.1em; color: #D4AF37; }
-    .contact { text-align: right; font-size: 0.9em; }
-    .contact a { color: #D4AF37; text-decoration: none; font-weight: bold; }
+    .logo img { height:56px; width:auto; display:block; cursor:pointer; border-radius:8px; }
+    .title { text-align:center; cursor:pointer; flex:1; }
+    .title h1 { margin:0; font-size:1.15rem; letter-spacing:0.2px; }
+    .title p { margin:4px 0 0; font-size:0.85rem; color:var(--gold); }
+
+    .social-dropdown { position:relative; }
+    .dropbtn {
+      background:transparent;
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.08);
+      padding:8px 10px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .dropdown-content {
+      display:none;
+      position:absolute;
+      right:0;
+      top:calc(100% + 8px);
+      background:var(--brand-dark);
+      padding:10px;
+      border-radius:8px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      z-index:1300;
+      flex-direction:column;
+      min-width:160px;
+    }
+    .dropdown-content a { display:flex; align-items:center; gap:10px; padding:8px 10px; color:#fff; text-decoration:none; border-radius:6px; }
+    .dropdown-content a:hover { background:rgba(255,255,255,0.03); }
+    .social-dropdown:hover .dropdown-content { display:flex; }
 
     nav {
-      background-color: #009966; /* Emerald Green */
-      text-align: center;
-      padding: 12px;
-      position: sticky;
-      top: 80px;
-      z-index: 999;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      background:var(--brand-green);
+      text-align:center;
+      padding:10px 12px;
+      position:sticky;
+      top:var(--header-h);
+      z-index:1100;
+      box-shadow:0 2px 6px rgba(0,0,0,0.06);
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      height:var(--nav-h);
+      align-items:center;
     }
-    nav a {
-      color: white;
-      margin: 0 20px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    nav a:hover { color: #D4AF37; }
+    nav a { color:#fff; text-decoration:none; font-weight:700; padding:6px 10px; border-radius:8px; }
+    nav a:hover { color:var(--gold); background:rgba(0,0,0,0.03); }
 
-    section {
-      padding: 60px 40px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
+    .hero {
+      min-height: calc(100vh - var(--header-h) - var(--nav-h));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      position:relative;
+      background: url('https://drive.google.com/uc?export=view&id=1YrcTKUlaZ7rtMu3VzQ4FkfNo5N64dRAe') center/cover no-repeat;
     }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(rgba(0,0,0,0.46), rgba(0,0,0,0.46));
+      z-index:0;
     }
-    section h2 { color: #003366; margin-bottom: 20px; }
+    .hero-content {
+      position:relative;
+      z-index:1;
+      max-width:920px;
+      padding:28px;
+      margin:0 16px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
+      border-radius:12px;
+    }
+    .hero h1 { margin:0 0 12px; font-size:2.2rem; color:var(--gold); line-height:1.05; }
+    .hero p { margin:0 0 12px; font-size:1.02rem; color:#fff; opacity:0.95; }
+    .hero .hero-btn {
+      display:inline-block;
+      margin-top:12px;
+      padding:12px 22px;
+      background:var(--brand-green);
+      color:#fff;
+      text-decoration:none;
+      border-radius:10px;
+      font-weight:700;
+    }
+    .hero .hero-btn:hover { background:#007744; }
 
-    footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
+    main { max-width:var(--max-width); margin:0 auto; padding:28px 18px; box-sizing:border-box; }
+
+    section { padding:36px 0; }
+    .section-card {
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 8px 24px rgba(16,24,40,0.06);
+      border:1px solid rgba(15,23,42,0.04);
+    }
+    h2 { color:var(--brand-dark); margin-bottom:12px; font-size:1.4rem; }
+
+    .sales-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:var(--gap);
+      margin-top:12px;
+    }
+    .sales-item {
+      padding:16px;
+      border-radius:10px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.04);
+      box-shadow:0 6px 18px rgba(2,6,23,0.04);
+    }
+    .sales-item h3 { margin:0 0 8px; color:var(--gold); font-size:1.05rem; }
+    .sales-item p { margin:0; color:#374151; font-size:0.95rem; }
+
+    .contact-grid {
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:var(--gap);
+      align-items:start;
+    }
+    @media (max-width:920px){ .contact-grid { grid-template-columns: 1fr; } }
+
+    .form-wrap {
+      background:#fff;
+      padding:18px;
+      border-radius:12px;
+      box-shadow:0 8px 24px rgba(2,6,23,0.04);
+      border:1px solid rgba(0,0,0,0.04);
+    }
+    .form-row { display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+    .field { flex:1 1 220px; min-width:160px; display:flex; flex-direction:column; }
+    label { font-weight:700; margin-bottom:6px; color:#111827; font-size:0.95rem; }
+    input[type="text"], input[type="email"], input[type="tel"], textarea {
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid #e6e9ef;
+      font-size:0.95rem;
+      outline:none;
+      background:#fff;
+    }
+    input:focus, textarea:focus { box-shadow:0 0 0 4px rgba(0,153,102,0.06); border-color:var(--brand-green); }
+    textarea { min-height:110px; resize:vertical; }
+
+    .form-actions { display:flex; gap:12px; align-items:center; margin-top:8px; flex-wrap:wrap; }
+    .btn-primary {
+      background:var(--brand-green);
+      color:#fff;
+      padding:10px 16px;
+      border-radius:10px;
+      border:none;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btn-primary[disabled] { opacity:0.6; cursor:not-allowed; }
+    .form-note { color:var(--muted); font-size:0.9rem; }
+
+    .inline-error { color:#b91c1c; font-size:0.88rem; margin-top:6px; display:none; }
+    .form-success { background:#ecfdf5; border:1px solid #bbf7d0; color:#065f46; padding:12px; border-radius:8px; margin-top:12px; display:none; }
+    .form-error { background:#fff1f2; border:1px solid #fecaca; color:#7f1d1d; padding:12px; border-radius:8px; margin-top:12px; display:none; }
+
+    .contact-card { background:#fff; padding:18px; border-radius:12px; box-shadow:0 8px 24px rgba(2,6,23,0.04); border:1px solid rgba(0,0,0,0.04); }
+    .contact-card p { margin:8px 0; color:#374151; }
+
+    footer { background:var(--brand-dark); color:#fff; text-align:center; padding:18px; margin-top:28px; border-top:4px solid rgba(0,0,0,0.06); }
+
+    @media (max-width:640px){
+      .hero h1 { font-size:1.6rem; }
+      .hero p { font-size:0.98rem; }
+      header { padding:8px 12px; height:72px; }
+      nav { gap:10px; padding:8px; height:44px; }
     }
 
-    .sales-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .sales-card {
-      background-color: white;
-      border: 2px solid #009966;
-      border-radius: 8px;
-      padding: 20px;
-      width: 280px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .sales-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    .sales-card h3 { color: #D4AF37; margin-bottom: 10px; }
+    /* small svg icon sizing */
+    .icon { width:18px; height:18px; display:inline-block; vertical-align:middle; fill:#fff; }
+    .dropdown-content .icon { fill:#fff; width:18px; height:18px; }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo" onclick="goHome()">
-      <img src="https://drive.google.com/uc?export=view&id=1zdW1oVpmYcxStOodxhfAIKLF_2cQAUkS" alt="Logo">
+    <div class="logo" onclick="goHome()" aria-hidden="true">
+      <img src="https://drive.google.com/uc?export=view&id=1zdW1oVpmYcxStOodxhfAIKLF_2cQAUkS" alt="Nandhana Consultants logo">
     </div>
+
     <div class="title" onclick="goHome()">
       <h1>Nandhana Consultants</h1>
       <p>Smart Real Estate & Business Solutions</p>
     </div>
-    <div class="contact">
-      <p>Email: <a href="mailto:nandhanaconsultants@gmail.com">nandhanaconsultants@gmail.com</a></p>
-      <p>Phone: +91-9493005105</p>
+
+    <div class="social-dropdown" aria-label="social">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
+        <!-- menu icon -->
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+        Social
+      </button>
+
+      <div class="dropdown-content" role="menu" aria-hidden="true">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.5 9.9v-7h-2.2v-2.9h2.2V9.1c0-2.2 1.3-3.4 3.3-3.4.95 0 1.95.17 1.95.17v2.1h-1.08c-1.07 0-1.4.66-1.4 1.34v1.6h2.38l-.38 2.9h-2v7A10 10 0 0022 12z"/></svg>
+          Facebook
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A4.8 4.8 0 1016.8 13 4.8 4.8 0 0012 8.2zm6.4-3.6a1.2 1.2 0 11-1.2 1.2 1.2 1.2 0 011.2-1.2z"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 004.98 8.5 2.5 2.5 0 004.98 3.5zM3 9h4v12H3zM9 9h3.8v1.6h.1c.5-.9 1.8-1.8 3.7-1.8 4 0 4.7 2.6 4.7 6v7.2h-4v-6.4c0-1.5 0-3.4-2.1-3.4-2.1 0-2.4 1.6-2.4 3.3V21H9z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://wa.me/919493005105" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0012 0C5.4 0 .1 5.4.1 12.1c0 2.1.6 4.1 1.7 5.8L0 24l6.4-1.7c1.6 1 3.5 1.6 5.6 1.6 6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.5-8.2zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.6-.2-.4A8.6 8.6 0 013.2 12c0-4.8 3.9-8.7 8.8-8.7 2.4 0 4.6.9 6.3 2.6 1.7 1.7 2.6 3.9 2.6 6.3 0 4.9-3.9 8.8-8.7 8.8zM17 14.2c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.1-.2.2-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.5-.5.2-.2.3-.3.5-.5.2-.2.1-.4 0-.6-.1-.2-.7-1.6-.9-2.2-.2-.6-.4-.5-.7-.5-.2 0-.5 0-.8 0-.3 0-.7.1-1 .5-.3.4-1 1-1 2.4s1 2.8 1.1 3c.1.2 1.9 3 4.6 4.2 3.1 1.4 3.1 0 3.6-.9.5-.9.5-1.6.4-1.8-.1-.2-.3-.3-.6-.4z"/></svg>
+          WhatsApp
+        </a>
+      </div>
     </div>
   </header>
 
@@ -111,75 +273,187 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <section id="home">
-    <h2>Welcome to Nandhana Consultants</h2>
-    <p>Your trusted partner in Real Estate, CRM, ERP, and MIS solutions.</p>
-  </section>
+  <main>
+    <section id="home" class="hero" aria-label="Home hero">
+      <div class="hero-content">
+        <h1>Welcome to Nandhana Consultants</h1>
+        <p>We provide professional, end‑to‑end real estate services — specializing in property sales, resales, rentals, documentation, and bank loan assistance.</p>
+        <p>Whether you are buying, selling, or renting, our team ensures a smooth and transparent process every step of the way.</p>
+        <a class="hero-btn" href="#contact">Enquiry Now</a>
+      </div>
+    </section>
 
-  <section id="sales">
-    <h2>Our Sales Expertise</h2>
-    <div class="sales-container">
-      <div class="sales-card">
-        <h3>Residential Sales</h3>
-        <p>Flats, villas, and plots with trusted builders in Hyderabad.</p>
+    <section id="sales">
+      <div class="section-card">
+        <h2>Our Sales Expertise</h2>
+        <div class="sales-grid">
+          <div class="sales-item"><h3>Property Sales</h3><p>Flats, villas, and plots with trusted builders and verified listings.</p></div>
+          <div class="sales-item"><h3>Resales</h3><p>Assistance with resale transactions, valuation, and negotiation support.</p></div>
+          <div class="sales-item"><h3>Rentals</h3><p>Find the right rental homes and commercial spaces with transparent terms.</p></div>
+          <div class="sales-item"><h3>Documentation</h3><p>Sale deeds, title verification, registrations, and compliance handled end-to-end.</p></div>
+          <div class="sales-item"><h3>Bank Loans</h3><p>Guidance and support to secure home loans and mortgage financing.</p></div>
+        </div>
       </div>
-      <div class="sales-card">
-        <h3>Commercial Sales</h3>
-        <p>Office spaces and retail properties tailored to your business needs.</p>
-      </div>
-      <div class="sales-card">
-        <h3>Property Transfers</h3>
-        <p>Expert assistance with sale deeds, registrations, and compliance.</p>
-      </div>
-      <div class="sales-card">
-        <h3>Rentals / Lease</h3>
-        <p>Helping clients find the right rental homes and commercial spaces.</p>
-      </div>
-      <div class="sales-card">
-        <h3>Bank Loans</h3>
-        <p>Guidance in securing home loans and mortgage financing.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="vision">
-    <h2>Vision & Mission</h2>
-    <p><strong>Vision:</strong> To be the most trusted partner in real estate and business solutions.</p>
-    <p><strong>Mission:</strong> Deliver innovation, professionalism, and sustainable practices for client success.</p>
-  </section>
+    <section id="vision">
+      <div class="section-card">
+        <h2>Vision & Mission</h2>
+        <p><strong>Vision:</strong> To be the most trusted partner in real estate and property services across Hyderabad and beyond.</p>
+        <p><strong>Mission:</strong> Deliver transparent, reliable, and client-focused real estate solutions that simplify every transaction.</p>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: nandhanaconsultants@gmail.com</p>
-    <p>Phone: +91-9493005105</p>
-    <p>Location: Hyderabad, India</p>
-  </section>
+    <section id="contact">
+      <div class="section-card">
+        <h2>Contact & Enquiry</h2>
+
+        <div class="contact-grid" style="margin-top:12px;">
+          <div class="form-wrap" aria-live="polite">
+            <form id="enquiryForm" action="https://formspree.io/f/xlgqkeaz" method="POST" novalidate>
+              <div class="form-row">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" required autocomplete="name" />
+                  <div id="err-name" class="inline-error">Please enter your name</div>
+                </div>
+
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="_replyto" type="email" required autocomplete="email" />
+                  <div id="err-email" class="inline-error">Enter a valid email address</div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+91 98765 43210 or 9876543210" />
+                  <div id="err-phone" class="inline-error">Enter a valid phone number (7–15 digits, may include +)</div>
+                </div>
+
+                <div class="field">
+                  <label for="budget">Budget (approx.)</label>
+                  <input id="budget" name="budget" type="text" placeholder="e.g., ₹25 Lakh or $35,000" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field" style="flex:1 1 100%;">
+                  <label for="requirement">Requirement</label>
+                  <textarea id="requirement" name="requirement" required placeholder="Describe your requirement (location, size, timeline)"></textarea>
+                  <div id="err-req" class="inline-error">Please describe your requirement</div>
+                </div>
+              </div>
+
+              <input type="hidden" name="_subject" value="New enquiry from website">
+              <input type="hidden" name="_next" value="thank-you.html">
+
+              <div class="form-actions">
+                <button id="submitBtn" class="btn-primary" type="submit" disabled>Submit Enquiry</button>
+                <div class="form-note">We will contact you within 24 hours</div>
+              </div>
+
+              <div id="formSuccess" class="form-success" role="status">Thank you. Your enquiry has been sent. We will contact you soon.</div>
+              <div id="formError" class="form-error" role="alert">Sorry, something went wrong. Please try again or email nandhanaconsultants@gmail.com</div>
+            </form>
+          </div>
+
+          <div class="contact-card">
+            <h3>Office</h3>
+            <p><strong>Email:</strong> nandhanaconsultants@gmail.com</p>
+            <p><strong>Phone:</strong> +91-9493005105</p>
+            <p><strong>Location:</strong> Shaikpet, Hyderabad, Telangana, India</p>
+            <p style="margin-top:12px;color:var(--muted);font-size:0.95rem;">Prefer a callback or site visit? Submit the form with your preferred time and we'll reach out.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2026 Nandhana Consultants. All rights reserved.</p>
+    <p>&copy; <span id="year"></span> Nandhana Consultants. All rights reserved.</p>
   </footer>
 
-<script>
-  function goHome() {
-    // Find the Home section
-    const homeSection = document.getElementById("home");
-    // Smooth scroll into view
-    homeSection.scrollIntoView({ behavior: "smooth" });
-  }
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Scroll reveal effect for sections
-  const sections = document.querySelectorAll("section");
-  const revealOnScroll = () => {
-    sections.forEach(sec => {
-      const rect = sec.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
-        sec.classList.add("visible");
-      }
-    });
-  };
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("load", revealOnScroll);
-</script>
+    function goHome(){ const el = document.getElementById('home'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'}); }
 
+    // Dropdown accessibility
+    const dropdown = document.querySelector('.social-dropdown');
+    const dropbtn = dropdown && dropdown.querySelector('.dropbtn');
+    const menu = dropdown && dropdown.querySelector('.dropdown-content');
+    if(dropbtn && menu){
+      dropdown.addEventListener('mouseenter', ()=> { dropbtn.setAttribute('aria-expanded','true'); menu.setAttribute('aria-hidden','false'); });
+      dropdown.addEventListener('mouseleave', ()=> { dropbtn.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true'); });
+      dropbtn.addEventListener('focus', ()=> { dropbtn.setAttribute('aria-expanded','true'); menu.setAttribute('aria-hidden','false'); });
+      dropbtn.addEventListener('blur', ()=> { dropbtn.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true'); });
+    }
+
+    // Simple reveal for sections
+    const sections = document.querySelectorAll('main section');
+    function revealSections(){ const offset = window.innerHeight * 0.85; sections.forEach(s => { const rect = s.getBoundingClientRect(); if(rect.top < offset) s.classList.add('visible'); }); }
+    window.addEventListener('load', revealSections);
+    window.addEventListener('scroll', revealSections);
+    window.addEventListener('resize', revealSections);
+
+    // Validation and AJAX submit
+    (function(){
+      const form = document.getElementById('enquiryForm');
+      const submitBtn = document.getElementById('submitBtn');
+
+      const nameEl = document.getElementById('name');
+      const emailEl = document.getElementById('email');
+      const phoneEl = document.getElementById('phone');
+      const reqEl = document.getElementById('requirement');
+
+      const errName = document.getElementById('err-name');
+      const errEmail = document.getElementById('err-email');
+      const errPhone = document.getElementById('err-phone');
+      const errReq = document.getElementById('err-req');
+
+      const successBox = document.getElementById('formSuccess');
+      const errorBox = document.getElementById('formError');
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+      const phoneDigitsRegex = /^\+?[0-9\s\-()]{7,20}$/;
+      function countDigits(s){ return (s.match(/\d/g) || []).length; }
+
+      function validateName(){ const ok = nameEl.value.trim().length >= 2; errName.style.display = ok ? 'none' : 'block'; return ok; }
+      function validateEmail(){ const ok = emailRegex.test(emailEl.value.trim()); errEmail.style.display = ok ? 'none' : 'block'; return ok; }
+      function validatePhone(){ const v = phoneEl.value.trim(); const basic = phoneDigitsRegex.test(v); const digits = countDigits(v); const ok = basic && digits >= 7 && digits <= 15; errPhone.style.display = ok ? 'none' : 'block'; return ok; }
+      function validateReq(){ const ok = reqEl.value.trim().length >= 6; errReq.style.display = ok ? 'none' : 'block'; return ok; }
+
+      function updateSubmitState(){ const allValid = validateName() && validateEmail() && validatePhone() && validateReq(); submitBtn.disabled = !allValid; }
+
+      [nameEl, emailEl, phoneEl, reqEl].forEach(el => { el.addEventListener('input', updateSubmitState); el.addEventListener('blur', updateSubmitState); });
+      updateSubmitState();
+
+      form.addEventListener('submit', function(e){
+        if(!window.fetch) return;
+        e.preventDefault();
+        successBox.style.display = 'none';
+        errorBox.style.display = 'none';
+        if(!(validateName() && validateEmail() && validatePhone() && validateReq())){ updateSubmitState(); return; }
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        const data = new FormData(form);
+        fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+          .then(response => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Enquiry';
+            if(response.ok){
+              form.reset();
+              updateSubmitState();
+              successBox.style.display = 'block';
+              setTimeout(()=> successBox.style.display = 'none', 7000);
+            } else {
+              response.json().then(json => { errorBox.textContent = json.error || 'Submission failed. Please try again.'; errorBox.style.display = 'block'; }).catch(()=> { errorBox.style.display = 'block'; });
+            }
+          }).catch(()=> { submitBtn.disabled = false; submitBtn.textContent = 'Submit Enquiry'; errorBox.style.display = 'block'; });
+      });
+    })();
+  </script>
 </body>
 </html>
