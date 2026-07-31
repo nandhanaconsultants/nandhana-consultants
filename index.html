@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <title>Nandhana Consultants</title>
-
-  <!-- Favicon (logo in tab) -->
-  <link rel="icon" type="image/png" href="https://drive.google.com/uc?export=view&id=1zdW1oVpmYcxStOodxhfAIKLF_2cQAUkS">
-
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- Local favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
   <style>
     :root{
       --brand-dark:#003366;
@@ -49,36 +49,6 @@
     .title h1 { margin:0; font-size:1.15rem; letter-spacing:0.2px; }
     .title p { margin:4px 0 0; font-size:0.85rem; color:var(--gold); }
 
-    .social-dropdown { position:relative; }
-    .dropbtn {
-      background:transparent;
-      color:#fff;
-      border:1px solid rgba(255,255,255,0.08);
-      padding:8px 10px;
-      border-radius:8px;
-      cursor:pointer;
-      font-size:18px;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .dropdown-content {
-      display:none;
-      position:absolute;
-      right:0;
-      top:calc(100% + 8px);
-      background:var(--brand-dark);
-      padding:10px;
-      border-radius:8px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.25);
-      z-index:1300;
-      flex-direction:column;
-      min-width:160px;
-    }
-    .dropdown-content a { display:flex; align-items:center; gap:10px; padding:8px 10px; color:#fff; text-decoration:none; border-radius:6px; }
-    .dropdown-content a:hover { background:rgba(255,255,255,0.03); }
-    .social-dropdown:hover .dropdown-content { display:flex; }
-
     nav {
       background:var(--brand-green);
       text-align:center;
@@ -104,7 +74,7 @@
       text-align:center;
       color:#fff;
       position:relative;
-      background: url('https://drive.google.com/uc?export=view&id=1YrcTKUlaZ7rtMu3VzQ4FkfNo5N64dRAe') center/cover no-repeat;
+      background: url('assets/skyline.jpg') center/cover no-repeat;
     }
     .hero::after {
       content:"";
@@ -119,7 +89,6 @@
       max-width:920px;
       padding:28px;
       margin:0 16px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
       border-radius:12px;
     }
     .hero h1 { margin:0 0 12px; font-size:2.2rem; color:var(--gold); line-height:1.05; }
@@ -221,48 +190,17 @@
       header { padding:8px 12px; height:72px; }
       nav { gap:10px; padding:8px; height:44px; }
     }
-
-    /* small svg icon sizing */
-    .icon { width:18px; height:18px; display:inline-block; vertical-align:middle; fill:#fff; }
-    .dropdown-content .icon { fill:#fff; width:18px; height:18px; }
   </style>
 </head>
 <body>
   <header>
     <div class="logo" onclick="goHome()" aria-hidden="true">
-      <img src="https://drive.google.com/uc?export=view&id=1zdW1oVpmYcxStOodxhfAIKLF_2cQAUkS" alt="Nandhana Consultants logo">
+      <img src="assets/logo.png" alt="Nandhana Consultants logo">
     </div>
 
     <div class="title" onclick="goHome()">
       <h1>Nandhana Consultants</h1>
       <p>Smart Real Estate & Business Solutions</p>
-    </div>
-
-    <div class="social-dropdown" aria-label="social">
-      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
-        <!-- menu icon -->
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
-        Social
-      </button>
-
-      <div class="dropdown-content" role="menu" aria-hidden="true">
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.5 9.9v-7h-2.2v-2.9h2.2V9.1c0-2.2 1.3-3.4 3.3-3.4.95 0 1.95.17 1.95.17v2.1h-1.08c-1.07 0-1.4.66-1.4 1.34v1.6h2.38l-.38 2.9h-2v7A10 10 0 0022 12z"/></svg>
-          Facebook
-        </a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A4.8 4.8 0 1016.8 13 4.8 4.8 0 0012 8.2zm6.4-3.6a1.2 1.2 0 11-1.2 1.2 1.2 1.2 0 011.2-1.2z"/></svg>
-          Instagram
-        </a>
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 004.98 8.5 2.5 2.5 0 004.98 3.5zM3 9h4v12H3zM9 9h3.8v1.6h.1c.5-.9 1.8-1.8 3.7-1.8 4 0 4.7 2.6 4.7 6v7.2h-4v-6.4c0-1.5 0-3.4-2.1-3.4-2.1 0-2.4 1.6-2.4 3.3V21H9z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://wa.me/919493005105" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0012 0C5.4 0 .1 5.4.1 12.1c0 2.1.6 4.1 1.7 5.8L0 24l6.4-1.7c1.6 1 3.5 1.6 5.6 1.6 6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.5-8.2zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.6-.2-.4A8.6 8.6 0 013.2 12c0-4.8 3.9-8.7 8.8-8.7 2.4 0 4.6.9 6.3 2.6 1.7 1.7 2.6 3.9 2.6 6.3 0 4.9-3.9 8.8-8.7 8.8zM17 14.2c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.1-.2.2-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.5-.5.2-.2.3-.3.5-.5.2-.2.1-.4 0-.6-.1-.2-.7-1.6-.9-2.2-.2-.6-.4-.5-.7-.5-.2 0-.5 0-.8 0-.3 0-.7.1-1 .5-.3.4-1 1-1 2.4s1 2.8 1.1 3c.1.2 1.9 3 4.6 4.2 3.1 1.4 3.1 0 3.6-.9.5-.9.5-1.6.4-1.8-.1-.2-.3-.3-.6-.4z"/></svg>
-          WhatsApp
-        </a>
-      </div>
     </div>
   </header>
 
@@ -347,7 +285,7 @@
               </div>
 
               <input type="hidden" name="_subject" value="New enquiry from website">
-              <input type="hidden" name="_next" value="thank-you.html">
+              <input type="hidden" name="_next" value="https://YOUR_GITHUB_USERNAME.github.io/REPO_NAME/thank-you.html">
 
               <div class="form-actions">
                 <button id="submitBtn" class="btn-primary" type="submit" disabled>Submit Enquiry</button>
@@ -377,42 +315,19 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
     function goHome(){ const el = document.getElementById('home'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'}); }
 
-    // Dropdown accessibility
-    const dropdown = document.querySelector('.social-dropdown');
-    const dropbtn = dropdown && dropdown.querySelector('.dropbtn');
-    const menu = dropdown && dropdown.querySelector('.dropdown-content');
-    if(dropbtn && menu){
-      dropdown.addEventListener('mouseenter', ()=> { dropbtn.setAttribute('aria-expanded','true'); menu.setAttribute('aria-hidden','false'); });
-      dropdown.addEventListener('mouseleave', ()=> { dropbtn.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true'); });
-      dropbtn.addEventListener('focus', ()=> { dropbtn.setAttribute('aria-expanded','true'); menu.setAttribute('aria-hidden','false'); });
-      dropbtn.addEventListener('blur', ()=> { dropbtn.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true'); });
-    }
-
-    // Simple reveal for sections
-    const sections = document.querySelectorAll('main section');
-    function revealSections(){ const offset = window.innerHeight * 0.85; sections.forEach(s => { const rect = s.getBoundingClientRect(); if(rect.top < offset) s.classList.add('visible'); }); }
-    window.addEventListener('load', revealSections);
-    window.addEventListener('scroll', revealSections);
-    window.addEventListener('resize', revealSections);
-
-    // Validation and AJAX submit
     (function(){
       const form = document.getElementById('enquiryForm');
       const submitBtn = document.getElementById('submitBtn');
-
       const nameEl = document.getElementById('name');
       const emailEl = document.getElementById('email');
       const phoneEl = document.getElementById('phone');
       const reqEl = document.getElementById('requirement');
-
       const errName = document.getElementById('err-name');
       const errEmail = document.getElementById('err-email');
       const errPhone = document.getElementById('err-phone');
       const errReq = document.getElementById('err-req');
-
       const successBox = document.getElementById('formSuccess');
       const errorBox = document.getElementById('formError');
 
