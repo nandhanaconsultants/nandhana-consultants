@@ -1,374 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <title>Nandhana Consultants</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-  <!-- Local favicon -->
-  <link rel="icon" type="image/png" href="assets/logo.png">
-
-  <style>
-    :root{
-      --brand-dark:#003366;
-      --brand-green:#009966;
-      --gold:#D4AF37;
-      --muted:#6b7280;
-      --card-bg:#ffffff;
-      --max-width:1100px;
-      --radius:10px;
-      --gap:18px;
-      --header-h:76px;
-      --nav-h:48px;
-    }
-
-    html { scroll-behavior:smooth; scroll-padding-top: calc(var(--header-h) + var(--nav-h) + 12px); }
-    body {
-      margin:0;
-      font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
-      background:#f5f7fb;
-      color:#111827;
-      line-height:1.45;
-    }
-
-    header {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:10px 18px;
-      background:var(--brand-dark);
-      color:#fff;
-      position:sticky;
-      top:0;
-      z-index:1200;
-      height:var(--header-h);
-      box-sizing:border-box;
-    }
-    .logo img { height:56px; width:auto; display:block; cursor:pointer; border-radius:8px; }
-    .title { text-align:center; cursor:pointer; flex:1; }
-    .title h1 { margin:0; font-size:1.15rem; letter-spacing:0.2px; }
-    .title p { margin:4px 0 0; font-size:0.85rem; color:var(--gold); }
-
-    nav {
-      background:var(--brand-green);
-      text-align:center;
-      padding:10px 12px;
-      position:sticky;
-      top:var(--header-h);
-      z-index:1100;
-      box-shadow:0 2px 6px rgba(0,0,0,0.06);
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      height:var(--nav-h);
-      align-items:center;
-    }
-    nav a { color:#fff; text-decoration:none; font-weight:700; padding:6px 10px; border-radius:8px; }
-    nav a:hover { color:var(--gold); background:rgba(0,0,0,0.03); }
-
-    .hero {
-      min-height: calc(100vh - var(--header-h) - var(--nav-h));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#fff;
-      position:relative;
-      background: url('assets/skyline.jpg') center/cover no-repeat;
-    }
-    .hero::after {
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(rgba(0,0,0,0.46), rgba(0,0,0,0.46));
-      z-index:0;
-    }
-    .hero-content {
-      position:relative;
-      z-index:1;
-      max-width:920px;
-      padding:28px;
-      margin:0 16px;
-      border-radius:12px;
-    }
-    .hero h1 { margin:0 0 12px; font-size:2.2rem; color:var(--gold); line-height:1.05; }
-    .hero p { margin:0 0 12px; font-size:1.02rem; color:#fff; opacity:0.95; }
-    .hero .hero-btn {
-      display:inline-block;
-      margin-top:12px;
-      padding:12px 22px;
-      background:var(--brand-green);
-      color:#fff;
-      text-decoration:none;
-      border-radius:10px;
-      font-weight:700;
-    }
-    .hero .hero-btn:hover { background:#007744; }
-
-    main { max-width:var(--max-width); margin:0 auto; padding:28px 18px; box-sizing:border-box; }
-
-    section { padding:36px 0; }
-    .section-card {
-      background:var(--card-bg);
-      border-radius:var(--radius);
-      padding:20px;
-      box-shadow:0 8px 24px rgba(16,24,40,0.06);
-      border:1px solid rgba(15,23,42,0.04);
-    }
-    h2 { color:var(--brand-dark); margin-bottom:12px; font-size:1.4rem; }
-
-    .sales-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-      gap:var(--gap);
-      margin-top:12px;
-    }
-    .sales-item {
-      padding:16px;
-      border-radius:10px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.04);
-      box-shadow:0 6px 18px rgba(2,6,23,0.04);
-    }
-    .sales-item h3 { margin:0 0 8px; color:var(--gold); font-size:1.05rem; }
-    .sales-item p { margin:0; color:#374151; font-size:0.95rem; }
-
-    .contact-grid {
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:var(--gap);
-      align-items:start;
-    }
-    @media (max-width:920px){ .contact-grid { grid-template-columns: 1fr; } }
-
-    .form-wrap {
-      background:#fff;
-      padding:18px;
-      border-radius:12px;
-      box-shadow:0 8px 24px rgba(2,6,23,0.04);
-      border:1px solid rgba(0,0,0,0.04);
-    }
-    .form-row { display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
-    .field { flex:1 1 220px; min-width:160px; display:flex; flex-direction:column; }
-    label { font-weight:700; margin-bottom:6px; color:#111827; font-size:0.95rem; }
-    input[type="text"], input[type="email"], input[type="tel"], textarea {
-      padding:10px 12px;
-      border-radius:10px;
-      border:1px solid #e6e9ef;
-      font-size:0.95rem;
-      outline:none;
-      background:#fff;
-    }
-    input:focus, textarea:focus { box-shadow:0 0 0 4px rgba(0,153,102,0.06); border-color:var(--brand-green); }
-    textarea { min-height:110px; resize:vertical; }
-
-    .form-actions { display:flex; gap:12px; align-items:center; margin-top:8px; flex-wrap:wrap; }
-    .btn-primary {
-      background:var(--brand-green);
-      color:#fff;
-      padding:10px 16px;
-      border-radius:10px;
-      border:none;
-      font-weight:700;
-      cursor:pointer;
-    }
-    .btn-primary[disabled] { opacity:0.6; cursor:not-allowed; }
-    .form-note { color:var(--muted); font-size:0.9rem; }
-
-    .inline-error { color:#b91c1c; font-size:0.88rem; margin-top:6px; display:none; }
-    .form-success { background:#ecfdf5; border:1px solid #bbf7d0; color:#065f46; padding:12px; border-radius:8px; margin-top:12px; display:none; }
-    .form-error { background:#fff1f2; border:1px solid #fecaca; color:#7f1d1d; padding:12px; border-radius:8px; margin-top:12px; display:none; }
-
-    .contact-card { background:#fff; padding:18px; border-radius:12px; box-shadow:0 8px 24px rgba(2,6,23,0.04); border:1px solid rgba(0,0,0,0.04); }
-    .contact-card p { margin:8px 0; color:#374151; }
-
-    footer { background:var(--brand-dark); color:#fff; text-align:center; padding:18px; margin-top:28px; border-top:4px solid rgba(0,0,0,0.06); }
-
-    @media (max-width:640px){
-      .hero h1 { font-size:1.6rem; }
-      .hero p { font-size:0.98rem; }
-      header { padding:8px 12px; height:72px; }
-      nav { gap:10px; padding:8px; height:44px; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <div class="logo" onclick="goHome()" aria-hidden="true">
-      <img src="assets/logo.png" alt="Nandhana Consultants logo">
-    </div>
-
-    <div class="title" onclick="goHome()">
-      <h1>Nandhana Consultants</h1>
-      <p>Smart Real Estate & Business Solutions</p>
-    </div>
+    <img src="images/NC Logo.png" alt="Nandhana Consultants Logo" class="logo">
+    <h1>Nandhana Consultants</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="sales.html">Sales</a></li>
+        <li><a href="rentals.html">Rentals</a></li>
+        <li><a href="loans.html">Loans</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#sales">Sales</a>
-    <a href="#vision">Vision</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="images/skyline.jpg" alt="City Skyline">
+    <h2>Your trusted partner in Sales, Rentals & Loans</h2>
+  </section>
 
-  <main>
-    <section id="home" class="hero" aria-label="Home hero">
-      <div class="hero-content">
-        <h1>Welcome to Nandhana Consultants</h1>
-        <p>We provide professional, end‑to‑end real estate services — specializing in property sales, resales, rentals, documentation, and bank loan assistance.</p>
-        <p>Whether you are buying, selling, or renting, our team ensures a smooth and transparent process every step of the way.</p>
-        <a class="hero-btn" href="#contact">Enquiry Now</a>
-      </div>
-    </section>
+  <!-- Services Overview -->
+  <section class="services">
+    <h2>Our Services</h2>
+    <div class="service-card">
+      <h3>Sales</h3>
+      <p>Explore our onboard projects available for purchase.</p>
+      <a href="sales.html">Learn More</a>
+    </div>
+    <div class="service-card">
+      <h3>Rentals</h3>
+      <p>Find rental properties tailored to your needs.</p>
+      <a href="rentals.html">Learn More</a>
+    </div>
+    <div class="service-card">
+      <h3>Loans</h3>
+      <p>Partner banks offering flexible loan options.</p>
+      <a href="loans.html">Learn More</a>
+    </div>
+  </section>
 
-    <section id="sales">
-      <div class="section-card">
-        <h2>Our Sales Expertise</h2>
-        <div class="sales-grid">
-          <div class="sales-item"><h3>Property Sales</h3><p>Flats, villas, and plots with trusted builders and verified listings.</p></div>
-          <div class="sales-item"><h3>Resales</h3><p>Assistance with resale transactions, valuation, and negotiation support.</p></div>
-          <div class="sales-item"><h3>Rentals</h3><p>Find the right rental homes and commercial spaces with transparent terms.</p></div>
-          <div class="sales-item"><h3>Documentation</h3><p>Sale deeds, title verification, registrations, and compliance handled end-to-end.</p></div>
-          <div class="sales-item"><h3>Bank Loans</h3><p>Guidance and support to secure home loans and mortgage financing.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="vision">
-      <div class="section-card">
-        <h2>Vision & Mission</h2>
-        <p><strong>Vision:</strong> To be the most trusted partner in real estate and property services across Hyderabad and beyond.</p>
-        <p><strong>Mission:</strong> Deliver transparent, reliable, and client-focused real estate solutions that simplify every transaction.</p>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="section-card">
-        <h2>Contact & Enquiry</h2>
-
-        <div class="contact-grid" style="margin-top:12px;">
-          <div class="form-wrap" aria-live="polite">
-            <form id="enquiryForm" action="https://formspree.io/f/xlgqkeaz" method="POST" novalidate>
-              <div class="form-row">
-                <div class="field">
-                  <label for="name">Name</label>
-                  <input id="name" name="name" type="text" required autocomplete="name" />
-                  <div id="err-name" class="inline-error">Please enter your name</div>
-                </div>
-
-                <div class="field">
-                  <label for="email">Email</label>
-                  <input id="email" name="_replyto" type="email" required autocomplete="email" />
-                  <div id="err-email" class="inline-error">Enter a valid email address</div>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="field">
-                  <label for="phone">Phone</label>
-                  <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+91 98765 43210 or 9876543210" />
-                  <div id="err-phone" class="inline-error">Enter a valid phone number (7–15 digits, may include +)</div>
-                </div>
-
-                <div class="field">
-                  <label for="budget">Budget (approx.)</label>
-                  <input id="budget" name="budget" type="text" placeholder="e.g., ₹25 Lakh or $35,000" />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="field" style="flex:1 1 100%;">
-                  <label for="requirement">Requirement</label>
-                  <textarea id="requirement" name="requirement" required placeholder="Describe your requirement (location, size, timeline)"></textarea>
-                  <div id="err-req" class="inline-error">Please describe your requirement</div>
-                </div>
-              </div>
-
-              <input type="hidden" name="_subject" value="New enquiry from website">
-              <input type="hidden" name="_next" value="https://YOUR_GITHUB_USERNAME.github.io/REPO_NAME/thank-you.html">
-
-              <div class="form-actions">
-                <button id="submitBtn" class="btn-primary" type="submit" disabled>Submit Enquiry</button>
-                <div class="form-note">We will contact you within 24 hours</div>
-              </div>
-
-              <div id="formSuccess" class="form-success" role="status">Thank you. Your enquiry has been sent. We will contact you soon.</div>
-              <div id="formError" class="form-error" role="alert">Sorry, something went wrong. Please try again or email nandhanaconsultants@gmail.com</div>
-            </form>
-          </div>
-
-          <div class="contact-card">
-            <h3>Office</h3>
-            <p><strong>Email:</strong> nandhanaconsultants@gmail.com</p>
-            <p><strong>Phone:</strong> +91-9493005105</p>
-            <p><strong>Location:</strong> Shaikpet, Hyderabad, Telangana, India</p>
-            <p style="margin-top:12px;color:var(--muted);font-size:0.95rem;">Prefer a callback or site visit? Submit the form with your preferred time and we'll reach out.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
+  <!-- Footer -->
   <footer>
-    <p>&copy; <span id="year"></span> Nandhana Consultants. All rights reserved.</p>
+    <p>&copy; 2026 Nandhana Consultants | All Rights Reserved</p>
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    function goHome(){ const el = document.getElementById('home'); if(el) el.scrollIntoView({behavior:'smooth', block:'start'}); }
-
-    (function(){
-      const form = document.getElementById('enquiryForm');
-      const submitBtn = document.getElementById('submitBtn');
-      const nameEl = document.getElementById('name');
-      const emailEl = document.getElementById('email');
-      const phoneEl = document.getElementById('phone');
-      const reqEl = document.getElementById('requirement');
-      const errName = document.getElementById('err-name');
-      const errEmail = document.getElementById('err-email');
-      const errPhone = document.getElementById('err-phone');
-      const errReq = document.getElementById('err-req');
-      const successBox = document.getElementById('formSuccess');
-      const errorBox = document.getElementById('formError');
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-      const phoneDigitsRegex = /^\+?[0-9\s\-()]{7,20}$/;
-      function countDigits(s){ return (s.match(/\d/g) || []).length; }
-
-      function validateName(){ const ok = nameEl.value.trim().length >= 2; errName.style.display = ok ? 'none' : 'block'; return ok; }
-      function validateEmail(){ const ok = emailRegex.test(emailEl.value.trim()); errEmail.style.display = ok ? 'none' : 'block'; return ok; }
-      function validatePhone(){ const v = phoneEl.value.trim(); const basic = phoneDigitsRegex.test(v); const digits = countDigits(v); const ok = basic && digits >= 7 && digits <= 15; errPhone.style.display = ok ? 'none' : 'block'; return ok; }
-      function validateReq(){ const ok = reqEl.value.trim().length >= 6; errReq.style.display = ok ? 'none' : 'block'; return ok; }
-
-      function updateSubmitState(){ const allValid = validateName() && validateEmail() && validatePhone() && validateReq(); submitBtn.disabled = !allValid; }
-
-      [nameEl, emailEl, phoneEl, reqEl].forEach(el => { el.addEventListener('input', updateSubmitState); el.addEventListener('blur', updateSubmitState); });
-      updateSubmitState();
-
-      form.addEventListener('submit', function(e){
-        if(!window.fetch) return;
-        e.preventDefault();
-        successBox.style.display = 'none';
-        errorBox.style.display = 'none';
-        if(!(validateName() && validateEmail() && validatePhone() && validateReq())){ updateSubmitState(); return; }
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-        const data = new FormData(form);
-        fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-          .then(response => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit Enquiry';
-            if(response.ok){
-              form.reset();
-              updateSubmitState();
-              successBox.style.display = 'block';
-              setTimeout(()=> successBox.style.display = 'none', 7000);
-            } else {
-              response.json().then(json => { errorBox.textContent = json.error || 'Submission failed. Please try again.'; errorBox.style.display = 'block'; }).catch(()=> { errorBox.style.display = 'block'; });
-            }
-          }).catch(()=> { submitBtn.disabled = false; submitBtn.textContent = 'Submit Enquiry'; errorBox.style.display = 'block'; });
-      });
-    })();
-  </script>
 </body>
 </html>
